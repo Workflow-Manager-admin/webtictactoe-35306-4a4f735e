@@ -1,68 +1,54 @@
-/* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
+  --primary: #1976d2;
+  --secondary: #9a5151;
+  --accent: #ff9800;
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
   --text-primary: #282c34;
-  --text-secondary: #61dafb;
+  --text-secondary: #7e8a97;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --button-bg: var(--primary);
+  --button-text: #fff;
+  --button-bg-hover: #115293;
 }
 
 [data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
+  --bg-primary: #212228;
+  --bg-secondary: #23242a;
+  --text-primary: #f6f7f8;
+  --text-secondary: #a1a6b1;
+  --border-color: #353848;
+  --button-bg: #333f52;
+  --button-bg-hover: #37465c;
+  --button-text: #fff;
 }
 
+html, body, #root, .App {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
 .App {
   text-align: center;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
-  background-color: var(--bg-secondary);
+  background: var(--bg-primary);
+  padding: 0;
   min-height: 100vh;
+  transition: background 0.3s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
+  justify-content: flex-start;
 }
 
 .theme-toggle {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
+  top: 18px;
+  right: 36px;
+  background: var(--button-bg);
   color: var(--button-text);
   border: none;
   border-radius: 8px;
@@ -70,35 +56,180 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
-
 .theme-toggle:hover {
+  background: var(--button-bg-hover);
+}
+.ttt-title {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2.3rem;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  margin-bottom: 8px;
+}
+.ttt-label {
+  font-size: 1.01rem;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+.center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.ttt-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border-radius: 8px;
+  padding: 10px 26px;
+  font-size: 16px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 7px;
+  margin-bottom: 1px;
+}
+.ttt-btn:hover {
+  background: var(--button-bg-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
 }
-
-.theme-toggle:active {
-  transform: translateY(0);
+.ttt-btn:disabled, .ttt-btn[aria-disabled="true"] {
+  background: var(--border-color);
+  color: #a3a3a3;
+  cursor: not-allowed;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ttt-btn-sm {
+  padding: 6px 13px;
+  font-size: 0.97rem;
+  margin-left: 12px;
 }
-
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+.ttt-error {
+  color: #ec2323;
+  font-size: 0.95rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+.ttt-header-row {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 36px auto 18px auto;
+  justify-content: flex-start;
+}
+.ttt-username {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 12px;
+}
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 54px);
+  grid-template-rows: repeat(3, 54px);
+  gap: 5px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 9px;
+  margin: 0 auto 12px auto;
+  box-shadow: 0 3px 12px rgba(41,56,85,0.06);
+}
+.ttt-cell {
+  width: 54px; height: 54px;
+  font-size: 2.3rem;
+  font-weight: 500;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: 0 0.5px 2px rgba(64, 64, 112, 0.07);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.ttt-cell:disabled {
+  background: var(--bg-secondary);
+  color: var(--border-color);
+  cursor: not-allowed;
+}
+.ttt-cell-win {
+  background: var(--accent);
+  color: var(--button-text) !important;
+  box-shadow: 0 2px 6px rgba(250,170,0,0.19);
+}
+.ttt-info-bar {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.ttt-game-message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  padding-right: 4px;
+}
+.ttt-history-section {
+  min-width: 176px;
+  max-width: 210px;
+  background: var(--bg-secondary);
+  min-height: 198px;
+  border-radius: 9px;
+  margin-left: 15px;
+  padding: 14px 10px 10px 10px;
+  box-shadow: 0 1px 4px rgb(40 40 80 / 12%);
+  text-align: left;
+}
+.ttt-history-title {
+  color: var(--secondary);
+  font-size: 1.18rem;
+  margin-bottom: 7px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.ttt-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ttt-history-item {
+  color: var(--text-primary);
+  font-size: 1.03rem;
+  margin: 5px 0;
+  padding: 5px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.13s;
+}
+.ttt-history-item.active,
+.ttt-history-item:hover {
+  background: var(--accent);
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .ttt-header-row { max-width: 99vw; }
+}
+@media (max-width: 700px) {
+  .ttt-header-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ttt-board { grid-template-columns: repeat(3, 41px); grid-template-rows: repeat(3, 41px);}
+  .ttt-cell { width: 41px; height: 41px; font-size: 1.2rem; }
+  .ttt-history-section { min-width: 100px; max-width: 115px; font-size: 90%; }
+}
+@media (max-width: 480px) {
+  .ttt-history-section { display: none; }
+  .ttt-header-row { font-size: 14px; gap: 4px; }
+}
+footer {
+  margin-top: 62px;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
